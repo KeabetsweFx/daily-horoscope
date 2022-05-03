@@ -11,6 +11,8 @@ import { Colors } from 'resources/colors';
 import { FontSize } from 'resources/fonts';
 import { Fill, Container, Row, ScrollView } from 'theme/layout';
 import { SemiBold, ExtraBold, Regular } from 'theme/typography';
+
+import { SkeletonView } from './skeleton-view';
 import { StarSignImage, Title, CompatibleStar } from './styles';
 
 const Routes = [
@@ -27,7 +29,7 @@ const Routes = [
 export function HoroscopeView(props: Props) {
   const { sign } = props;
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const { data } = useHoroscope({ day: Routes[selectedIndex].key, sign });
+  const { data, isLoading } = useHoroscope({ day: Routes[selectedIndex].key, sign });
 
   const handleOnChange = useCallback(
     (event: NativeSyntheticEvent<NativeSegmentedControlIOSChangeEvent>) => {
@@ -51,6 +53,7 @@ export function HoroscopeView(props: Props) {
           <StarSignImage source={StarSignMap[sign]} />
         </Container>
         <Title>{sign}</Title>
+        {isLoading && !data && <SkeletonView />}
         {data && (
           <Container>
             <SemiBold fontSize={FontSize.H5} textAlign="center" color={Colors.waterloo}>
