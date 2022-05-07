@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react';
 
 import { Stack, Box, Tiles } from '@mobily/stacks';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, useColorScheme } from 'react-native';
 
 import { Sheet } from 'components/sheet';
 import { useTileHeight } from 'hooks/tile-height';
@@ -19,12 +19,20 @@ const GRID_COLUMN_NUM = 3;
  */
 function HoroscopeListComponent() {
   const { getTileHeight } = useTileHeight();
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
 
-  const handleOnPress = useCallback((sign: Sign) => {
-    Sheet.show('horoscope', {
-      content: <HoroscopeView sign={sign} />,
-    });
-  }, []);
+  const handleOnPress = useCallback(
+    (sign: Sign) => {
+      Sheet.show('horoscope', {
+        content: <HoroscopeView sign={sign} />,
+        backgroundStyle: {
+          backgroundColor: isDark ? Colors['black-pearl'] : Colors.white,
+        },
+      });
+    },
+    [isDark]
+  );
 
   const renderItem = useCallback(
     (item: StarSign) => {
@@ -41,7 +49,7 @@ function HoroscopeListComponent() {
   );
 
   return (
-    <Fill backgroundColor={Colors.white}>
+    <Fill backgroundColor={isDark ? Colors['black-pearl'] : Colors.white}>
       <ScrollView flex={1} showsVerticalScrollIndicator={false}>
         <Box padding={4}>
           <Stack space={4}>
@@ -62,6 +70,8 @@ function HoroscopeListComponent() {
  */
 function StarSignItem(props: StarSignItemProps) {
   const { star, image, height, onPress } = props;
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
 
   const handleOnPress = useCallback(() => {
     onPress(star);
@@ -71,7 +81,7 @@ function StarSignItem(props: StarSignItemProps) {
     <TouchableOpacity key={star} onPress={handleOnPress}>
       <Container height={height}>
         <StarSignImage source={image} resizeMode="contain" />
-        <StarSignTitle>{star}</StarSignTitle>
+        <StarSignTitle color={isDark ? Colors.white : Colors.black}>{star}</StarSignTitle>
       </Container>
     </TouchableOpacity>
   );

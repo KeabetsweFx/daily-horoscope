@@ -1,12 +1,14 @@
 export enum Colors {
   alto = '#DDDDDD',
+  'dodger-blue' = '#6152ff',
+  'black-pearl' = '#06041f',
   white = '#FFFFFF',
   black = '#000000',
   transparent = 'transparent',
   gallery = '#EEEEEE',
   silver = '#CCCCCC',
   monza = '#D0002B', // User for error messages
-  silverChalice = '#AFAFAF',
+  'silver-chalice' = '#AFAFAF',
   alabaster = '#F9F9F9',
   dusty = '#999999',
   tundora = '#444444',
