@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
-import { ViewStyle } from 'react-native';
+import { ViewStyle, Platform } from 'react-native';
 import Shimmer from 'react-native-shimmer';
 
 import { SKELETAL_ITEMS } from 'modules/horoscope/constants';
@@ -26,7 +26,7 @@ export function SkeletonView() {
  * @param props - view props
  */
 function SkeletalItem(props: ViewStyle) {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(Platform.select({ ios: false, default: true }));
 
   useEffect(() => {
     setTimeout(() => {
