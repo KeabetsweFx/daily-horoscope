@@ -1,7 +1,8 @@
 import React, { memo, useCallback } from 'react';
 
 import { Stack, Box, Tiles } from '@mobily/stacks';
-import { TouchableOpacity, useColorScheme } from 'react-native';
+import { TouchableOpacity } from 'react-native';
+import { useTheme } from '@react-navigation/native';
 
 import { Sheet } from 'components/sheet';
 import { useTileHeight } from 'hooks/tile-height';
@@ -19,19 +20,18 @@ const GRID_COLUMN_NUM = 3;
  */
 function HoroscopeListComponent() {
   const { getTileHeight } = useTileHeight();
-  const colorScheme = useColorScheme();
-  const isDark = colorScheme === 'dark';
+  const { colors, dark } = useTheme();
 
   const handleOnPress = useCallback(
     (sign: Sign) => {
       Sheet.show('horoscope', {
         content: <HoroscopeView sign={sign} />,
         backgroundStyle: {
-          backgroundColor: isDark ? Colors['black-pearl'] : Colors.white,
+          backgroundColor: dark ? Colors['black-pearl'] : Colors.white,
         },
       });
     },
-    [isDark]
+    [dark]
   );
 
   const renderItem = useCallback(
@@ -49,7 +49,7 @@ function HoroscopeListComponent() {
   );
 
   return (
-    <Fill backgroundColor={isDark ? Colors['black-pearl'] : Colors.white}>
+    <Fill backgroundColor={colors.background}>
       <ScrollView flex={1} showsVerticalScrollIndicator={false}>
         <Box padding={4}>
           <Stack space={4}>
@@ -70,8 +70,7 @@ function HoroscopeListComponent() {
  */
 function StarSignItem(props: StarSignItemProps) {
   const { star, image, height, onPress } = props;
-  const colorScheme = useColorScheme();
-  const isDark = colorScheme === 'dark';
+  const { colors } = useTheme();
 
   const handleOnPress = useCallback(() => {
     onPress(star);
@@ -81,7 +80,7 @@ function StarSignItem(props: StarSignItemProps) {
     <TouchableOpacity key={star} onPress={handleOnPress}>
       <Container height={height}>
         <StarSignImage source={image} resizeMode="contain" />
-        <StarSignTitle color={isDark ? Colors.white : Colors.black}>{star}</StarSignTitle>
+        <StarSignTitle color={colors.text}>{star}</StarSignTitle>
       </Container>
     </TouchableOpacity>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 /**
  * Provides fonts for the app
  */

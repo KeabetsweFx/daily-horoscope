@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 export const Images = {
   logo: require('assets/images/app-icon.png'),
   aries: require('assets/images/star-signs/aries.png'),

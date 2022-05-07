@@ -22,6 +22,6 @@ export const Title = styled(SemiBold)`
 `;
 
 export const CompatibleStar = styled(Image)`
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
 `;
