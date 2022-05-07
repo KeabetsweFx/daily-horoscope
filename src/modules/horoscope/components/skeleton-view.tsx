@@ -13,8 +13,8 @@ const ANIMATION_DELAY = 200;
  * Renders a skeleton view
  */
 export function SkeletonView() {
-  const renderItem = useCallback((item: ViewStyle & { order: number }) => {
-    return <SkeletalItem key={item.order} {...item} />;
+  const renderItem = useCallback((item: ViewStyle, index: number) => {
+    return <SkeletalItem key={index} {...item} />;
   }, []);
 
   return <Container mt={3}>{SKELETAL_ITEMS.map(renderItem as never)}</Container>;

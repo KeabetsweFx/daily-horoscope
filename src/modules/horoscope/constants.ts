@@ -1,3 +1,4 @@
+import { ViewStyle } from 'react-native';
 import { Images } from 'resources/assets';
 
 export enum Day {
@@ -51,10 +52,9 @@ export const StarSignMap = {
   [Sign.Pisces]: Images.pisces,
 };
 
-export const SKELETAL_ITEMS = [
-  { order: 1, height: 25, width: '50%', borderRadius: 10, alignSelf: 'center', marginBottom: 20 },
+export const SKELETAL_ITEMS: ViewStyle[] = [
+  { height: 25, width: '50%', borderRadius: 10, alignSelf: 'center', marginBottom: 20 },
   {
-    order: 2,
     height: 20,
     width: '70%',
     borderRadius: 10,
@@ -62,7 +62,6 @@ export const SKELETAL_ITEMS = [
     marginBottom: 12,
   },
   {
-    order: 4,
     height: 20,
     width: '80%',
     borderRadius: 10,
@@ -70,7 +69,6 @@ export const SKELETAL_ITEMS = [
     marginBottom: 12,
   },
   {
-    order: 5,
     height: 20,
     width: '90%',
     borderRadius: 10,
@@ -78,7 +76,6 @@ export const SKELETAL_ITEMS = [
     marginBottom: 12,
   },
   {
-    order: 6,
     height: 20,
     width: '95%',
     borderRadius: 10,
@@ -86,7 +83,6 @@ export const SKELETAL_ITEMS = [
     marginBottom: 12,
   },
   {
-    order: 7,
     height: 120,
     width: '100%',
     borderRadius: 10,

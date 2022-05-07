@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 
 import { NativeSyntheticEvent } from 'react-native';
 import SegmentedControl, {
@@ -32,13 +32,11 @@ export function HoroscopeView(props: Props) {
   const [selectedIndex, setSelectedIndex] = useState(1);
   const { data, isLoading } = useHoroscope({ day: Routes[selectedIndex].key, sign });
   const { colors, dark } = useTheme();
+  const appearance = dark ? 'dark' : 'light';
 
-  const handleOnChange = useCallback(
-    (event: NativeSyntheticEvent<NativeSegmentedControlIOSChangeEvent>) => {
-      setSelectedIndex(event.nativeEvent.selectedSegmentIndex);
-    },
-    []
-  );
+  const handleOnChange = (event: NativeSyntheticEvent<NativeSegmentedControlIOSChangeEvent>) => {
+    setSelectedIndex(event.nativeEvent.selectedSegmentIndex);
+  };
 
   return (
     <Fill>
@@ -47,7 +45,7 @@ export function HoroscopeView(props: Props) {
           values={Routes.map(item => item.title)}
           selectedIndex={selectedIndex}
           onChange={handleOnChange}
-          appearance={dark ? 'dark' : 'light'}
+          appearance={appearance}
         />
       </Container>
       <ScrollView px={30}>
@@ -55,11 +53,12 @@ export function HoroscopeView(props: Props) {
           <StarSignImage source={StarSignMap[sign]} />
         </Container>
         <Title color={colors.text}>{sign}</Title>
-        {isLoading && !data && <SkeletonView />}
-        {data && (
+        {isLoading && !data ? (
+          <SkeletonView />
+        ) : (
           <Container>
             <SemiBold fontSize={FontSize.H5} textAlign="center" color={Colors.waterloo}>
-              {data.date_range}
+              {data?.date_range}
             </SemiBold>
             <Container mt={2}>
               <Row alignItems="center" mb={1}>
@@ -67,7 +66,7 @@ export function HoroscopeView(props: Props) {
                   Mood:
                 </ExtraBold>
                 <Regular fontSize={FontSize.H5} ml={2} color={colors.text}>
-                  {data.mood}
+                  {data?.mood}
                 </Regular>
               </Row>
               <Row alignItems="center" mb={1}>
@@ -75,7 +74,7 @@ export function HoroscopeView(props: Props) {
                   Color:
                 </ExtraBold>
                 <Regular fontSize={FontSize.H5} ml={2} color={colors.text}>
-                  {data.color}
+                  {data?.color}
                 </Regular>
               </Row>
               <Row alignItems="center" mb={1}>
@@ -84,9 +83,9 @@ export function HoroscopeView(props: Props) {
                 </ExtraBold>
                 <Row ml={2} alignItems="center">
                   <Regular fontSize={FontSize.H5} mr={2} color={colors.text}>
-                    {data.compatibility}
+                    {data?.compatibility}
                   </Regular>
-                  <CompatibleStar source={StarSignMap[data.compatibility.toLowerCase() as Sign]} />
+                  <CompatibleStar source={StarSignMap[data?.compatibility.toLowerCase() as Sign]} />
                 </Row>
               </Row>
               <Row alignItems="center" mb={1}>
@@ -94,7 +93,7 @@ export function HoroscopeView(props: Props) {
                   Lucky number:
                 </ExtraBold>
                 <Regular fontSize={FontSize.H5} ml={2} color={colors.text}>
-                  {data.lucky_number}
+                  {data?.lucky_number}
                 </Regular>
               </Row>
               <Row alignItems="center" mb={1}>
@@ -102,7 +101,7 @@ export function HoroscopeView(props: Props) {
                   Lucky time:
                 </ExtraBold>
                 <Regular fontSize={FontSize.H5} ml={2} color={colors.text}>
-                  {data.lucky_time}
+                  {data?.lucky_time}
                 </Regular>
               </Row>
               <Container mb={1}>
@@ -110,7 +109,7 @@ export function HoroscopeView(props: Props) {
                   Description:
                 </ExtraBold>
                 <Regular fontSize={FontSize.H5} color={colors.text}>
-                  {data.description}
+                  {data?.description}
                 </Regular>
               </Container>
             </Container>
