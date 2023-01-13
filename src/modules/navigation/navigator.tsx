@@ -5,7 +5,9 @@ import { useTheme } from '@react-navigation/native';
 
 import { Sheet } from 'components/sheet';
 import { AppScreen } from 'screens/main';
+import { HoroscopeDetailScreen } from 'screens/horoscope-details';
 import { FontFamily } from 'resources/fonts';
+import { Routes } from './routes';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,16 +23,23 @@ export function AppStack() {
       fontSize: 18,
       color: colors.text,
     },
+    headerBackTitleVisible: false,
     headerStyle: {
       backgroundColor: colors.background,
     },
     headerShadowVisible: false,
+    headerBackImage: () => null,
   };
 
   return (
     <>
       <Stack.Navigator screenOptions={screenOptions}>
-        <Stack.Screen name="Daily Horoscope" component={AppScreen} />
+        <Stack.Screen name={Routes.Home} component={AppScreen} />
+        <Stack.Screen
+          name={Routes.Details}
+          component={HoroscopeDetailScreen}
+          options={{ presentation: 'modal' }}
+        />
       </Stack.Navigator>
       <Sheet />
       <StatusBar barStyle={barStyle} />

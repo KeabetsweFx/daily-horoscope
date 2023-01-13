@@ -17,6 +17,7 @@
     "@react-native-segmented-control/segmented-control": "^2.4.0",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.2",
+    "@react-navigation/stack": "^6.3.3",
     "aws-amplify": "^4.3.20",
     "axios": "^0.27.2",
     "expo": "^45.0.1",
