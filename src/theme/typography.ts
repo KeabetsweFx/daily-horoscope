@@ -1,9 +1,18 @@
-import { ViewStyle, TextProps, Text } from 'react-native';
-import styled from 'styled-components';
-import { space, SpaceProps, TypographyProps, typography, ColorProps, color } from 'styled-system';
+import styled from '@emotion/native';
+import {
+  ColorProps,
+  SpaceProps,
+  TypographyProps,
+  color,
+  space,
+  typography,
+} from '@techstack/styled-system';
+import { Text, TextProps, ViewStyle } from 'react-native';
 
-import { Colors } from 'resources/colors';
-import { FontFamily, FontSize } from 'resources/fonts';
+import { Colors } from 'theme/colors';
+import { FontFamily, FontSize } from 'theme/fonts';
+
+export type NativeTextProps = ViewStyle & ColorProps & TypographyProps & TextProps & SpaceProps;
 
 export const Normal = styled(Text)<
   ViewStyle & ColorProps & TypographyProps & TextProps & SpaceProps

@@ -1,4 +1,28 @@
 {
-  "name": "horoscopes",
-  "displayName": "horoscopes"
+  "expo": {
+    "name": "horoscope-app",
+    "slug": "horoscope-app",
+    "version": "1.0.0",
+    "experiments": {
+      "tsconfigPaths": true
+    },
+    "orientation": "portrait",
+    "icon": "./src/assets/images/app-icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#6152ff"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/images/app-icon.png",
+        "backgroundColor": "#6152ff"
+      }
+    },
+    "plugins": ["expo-font"]
+  }
 }

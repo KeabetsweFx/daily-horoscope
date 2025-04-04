@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { Image } from 'react-native';
-import { FontSize } from 'resources/fonts';
+import styled from '@emotion/native';
+import { FontSize } from 'theme/fonts';
+import { Image } from 'theme/layout';
 import { Medium, SemiBold } from 'theme/typography';
 
 export const StarSignImage = styled(Image)`

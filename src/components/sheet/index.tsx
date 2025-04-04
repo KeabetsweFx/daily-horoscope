@@ -7,7 +7,7 @@ import {
   BottomSheetBackdrop,
   BottomSheetBackdropProps,
 } from '@gorhom/bottom-sheet';
-import { Hub } from 'aws-amplify';
+import { PubSub } from 'services/PubSub';
 
 import { SheetEvents } from './events';
 import { SHEET_ROUTES } from './routes';
@@ -20,21 +20,21 @@ export class Sheet extends React.PureComponent<Record<string, unknown>, State> {
   private bottomSheet = createRef<BottomSheetModal>();
 
   public static hide(onCompleted?: Callback) {
-    Hub.dispatch('APP_SHEET', {
+    PubSub.dispatch('APP_SHEET', {
       event: SheetEvents.Hide,
       data: { onCompleted },
     });
   }
 
   public static update(routeName: Route, config: Config, onCompleted?: Callback) {
-    Hub.dispatch('APP_SHEET', {
+    PubSub.dispatch('APP_SHEET', {
       event: SheetEvents.Update,
       data: { routeName, config, onCompleted },
     });
   }
 
   public static show(routeName: Route, config?: Config, onCompleted?: Callback) {
-    Hub.dispatch('APP_SHEET', {
+    PubSub.dispatch('APP_SHEET', {
       event: SheetEvents.Show,
       data: { routeName, config, onCompleted },
     });
@@ -45,11 +45,11 @@ export class Sheet extends React.PureComponent<Record<string, unknown>, State> {
     this.state = {
       ...DEFAULT_STATE,
     };
-    Hub.listen('APP_SHEET', this.listener.bind(this));
+    PubSub.listen('APP_SHEET', this.listener.bind(this));
   }
 
   public componentWillUnmount() {
-    Hub.remove('APP_SHEET', this.listener);
+    PubSub.remove('APP_SHEET', this.listener);
   }
 
   public render() {

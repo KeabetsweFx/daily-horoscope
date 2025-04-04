@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 
-import { NativeSyntheticEvent } from 'react-native';
 import SegmentedControl, {
   NativeSegmentedControlIOSChangeEvent,
 } from '@react-native-segmented-control/segmented-control';
 import { useTheme } from '@react-navigation/native';
+import { ActivityIndicator, NativeSyntheticEvent } from 'react-native';
 
-import { Sign, Day, StarSignMap } from 'modules/horoscope/constants';
+import { Day, Sign, StarSignMap } from 'modules/horoscope/constants';
 import { useHoroscope } from 'modules/horoscope/hooks';
-import { Colors } from 'resources/colors';
-import { FontSize } from 'resources/fonts';
-import { Fill, Container, Row, ScrollView } from 'theme/layout';
-import { SemiBold, ExtraBold, Regular } from 'theme/typography';
+import { Colors } from 'theme/colors';
+import { FontSize } from 'theme/fonts';
+import { Container, Fill, Row, ScrollView } from 'theme/layout';
+import { ExtraBold, Regular, SemiBold } from 'theme/typography';
 
-import { SkeletonView } from './skeleton-view';
-import { StarSignImage, Title, CompatibleStar } from './styles';
+import { CompatibleStar, StarSignImage, Title } from './styles';
 
 const Routes = [
   { key: Day.Tomorrow, title: 'Tomorrow' },
@@ -54,7 +53,7 @@ export function HoroscopeView(props: Props) {
         </Container>
         <Title color={colors.text}>{sign}</Title>
         {isLoading && !data ? (
-          <SkeletonView />
+          <ActivityIndicator size="large" color={colors.text} />
         ) : (
           <Container>
             <SemiBold fontSize={FontSize.H5} textAlign="center" color={Colors.waterloo}>

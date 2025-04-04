@@ -1,14 +1,14 @@
 import React, { memo, useCallback } from 'react';
 
-import { Stack, Box, Tiles } from '@mobily/stacks';
+import { Box, Stack, Tiles } from '@mobily/stacks';
+import { useNavigation, useTheme } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native';
-import { useTheme, useNavigation } from '@react-navigation/native';
 
 import { useTileHeight } from 'hooks/tile-height';
-import { StarSigns, Sign } from 'modules/horoscope/constants';
+import { Sign, StarSigns } from 'modules/horoscope/constants';
 import { StarSign } from 'modules/horoscope/types';
 import { Routes } from 'modules/navigation/routes';
-import { ScrollView, Fill, Container } from 'theme/layout';
+import { Container, Fill, ScrollView } from 'theme/layout';
 import { StarSignImage, StarSignTitle } from './styles';
 
 const GRID_COLUMN_NUM = 3;
@@ -18,8 +18,8 @@ const GRID_COLUMN_NUM = 3;
  */
 function HoroscopeListComponent() {
   const { getTileHeight } = useTileHeight();
-  const { colors } = useTheme();
   const navigation = useNavigation<any>();
+  const { colors } = useTheme();
 
   const goToHoroscopeDetails = useCallback(
     (sign: Sign) => {
@@ -43,7 +43,7 @@ function HoroscopeListComponent() {
   );
 
   return (
-    <Fill backgroundColor={colors.background}>
+    <Fill style={{ backgroundColor: colors.background }}>
       <ScrollView flex={1} showsVerticalScrollIndicator={false}>
         <Box padding={4}>
           <Stack space={4}>
@@ -73,7 +73,7 @@ function StarSignItem(props: StarSignItemProps) {
   return (
     <TouchableOpacity key={star} onPress={handleOnPress}>
       <Container height={height}>
-        <StarSignImage source={image} resizeMode="contain" />
+        <StarSignImage source={image} contentFit="contain" />
         <StarSignTitle color={colors.text}>{star}</StarSignTitle>
       </Container>
     </TouchableOpacity>

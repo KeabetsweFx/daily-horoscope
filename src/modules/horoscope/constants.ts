@@ -1,5 +1,5 @@
 import { ViewStyle } from 'react-native';
-import { Images } from 'resources/assets';
+import { Images } from 'theme/images';
 
 export enum Day {
   Today = 'today',

@@ -1,8 +1,8 @@
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import qs from 'qs';
-import { useQuery } from 'react-query';
 
-import { Sign, Day } from 'modules/horoscope/constants';
+import { Day, Sign } from 'modules/horoscope/constants';
 import { Horoscope } from 'modules/horoscope/types';
 
 /**
@@ -13,16 +13,19 @@ import { Horoscope } from 'modules/horoscope/types';
 export function useHoroscope(params: Params) {
   const encodedValues = qs.stringify(params);
 
-  return useQuery(['horoscope', `${params.sign}:${params.day}`], async () => {
-    try {
-      const { data } = await axios.post<Horoscope>(
-        `https://aztro.sameerkumar.website?${encodedValues}`
-      );
+  return useQuery({
+    queryKey: ['horoscope', `${params.sign}:${params.day}`],
+    queryFn: async () => {
+      try {
+        const { data } = await axios.post<Horoscope>(
+          `https://aztro.sameerkumar.website?${encodedValues}`
+        );
 
-      return data;
-    } catch (e) {
-      throw new Error('Network response was not ok');
-    }
+        return data;
+      } catch (e) {
+        throw new Error('Network response was not ok');
+      }
+    },
   });
 }
 /** Type definitions */

@@ -1,12 +1,12 @@
-import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StatusBar } from 'react-native';
 import { useTheme } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from 'react';
+import { StatusBar } from 'react-native';
 
 import { Sheet } from 'components/sheet';
-import { AppScreen } from 'screens/main';
 import { HoroscopeDetailScreen } from 'screens/horoscope-details';
-import { FontFamily } from 'resources/fonts';
+import { AppScreen } from 'screens/main';
+import { FontFamily } from 'theme/fonts';
 import { Routes } from './routes';
 
 const Stack = createNativeStackNavigator();
